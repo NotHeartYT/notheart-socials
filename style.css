@@ -1,0 +1,335 @@
+/* =======================================================
+   THEME VARIABLES & RESET
+======================================================= */
+:root {
+    --bg-main: #050508;
+    --card-bg: rgba(22, 22, 29, 0.65);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --card-border-hover: rgba(255, 255, 255, 0.25);
+    
+    --text-primary: #f4f4f5;
+    --text-secondary: #9494a0;
+    
+    /* Platform Accent Colors */
+    --youtube-color: #ff2a2a;
+    --discord-color: #5865F2;
+    --github-color: #ffffff;
+    --website-color: #3b82f6;
+    
+    --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* =======================================================
+   SITE LOGO / BRANDING
+======================================================= */
+.site-logo-container {
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    z-index: 10;
+}
+
+.site-logo {
+    width: 132px;
+    height: 132px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+    transition: var(--transition);
+}
+
+.site-logo:hover {
+    transform: scale(1.08) rotate(-4deg);
+}
+
+/* Mobile Layout adjustments for Logo */
+@media (max-width: 640px) {
+    body {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 24px;
+    }
+
+    .site-logo-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .site-logo {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Background Ambient Lighting */
+.ambient-glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.35;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.orb-1 {
+    top: 10%;
+    left: 20%;
+    background: #5865F2;
+}
+
+.orb-2 {
+    bottom: 10%;
+    right: 20%;
+    background: #ff2a2a;
+}
+
+/* Glassmorphism Common Class */
+.glass {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+}
+
+/* =======================================================
+   MAIN CONTAINER
+======================================================= */
+.container {
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 1;
+}
+
+/* =======================================================
+   PROFILE CARD
+======================================================= */
+.profile-card {
+    text-align: center;
+    padding: 32px 24px;
+    transition: var(--transition);
+}
+
+.profile-card:hover {
+    border-color: var(--card-border-hover);
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 16px;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.status-badge {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 16px;
+    height: 16px;
+    background-color: #22c55e;
+    border: 3px solid #050508;
+    border-radius: 50%;
+}
+
+.profile-card h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+}
+
+.tagline {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.dot {
+    margin: 0 4px;
+    opacity: 0.5;
+}
+
+/* =======================================================
+   LINK BUTTONS
+======================================================= */
+.links-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.link-btn {
+    text-decoration: none;
+    color: var(--text-primary);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.btn-content i {
+    font-size: 1.25rem;
+    transition: var(--transition);
+}
+
+.arrow {
+    font-size: 0.85rem;
+    opacity: 0.3;
+    transition: var(--transition);
+}
+
+/* Hover Effects per Platform */
+.link-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--card-border-hover);
+}
+
+.link-btn:hover .arrow {
+    opacity: 1;
+    transform: translate(2px, -2px);
+}
+
+.youtube-link:hover .btn-content i { color: var(--youtube-color); }
+.discord-link:hover .btn-content i { color: var(--discord-color); }
+.github-link:hover .btn-content i { color: var(--github-color); }
+
+/* =======================================================
+   BENTO FEATURE CARDS
+======================================================= */
+.bento-card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: var(--transition);
+}
+
+.bento-card:hover {
+    border-color: var(--card-border-hover);
+}
+
+.bento-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bento-icon {
+    font-size: 1.4rem;
+}
+
+.web-icon {
+    color: var(--website-color);
+}
+
+.discord-bento .bento-icon {
+    color: var(--discord-color);
+}
+
+.bento-card h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.bento-card p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.cta-btn {
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 12px;
+    border-radius: 14px;
+    margin-top: 4px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Website Custom Button */
+.website-cta {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
+}
+
+.website-cta:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.website-cta i {
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.website-cta:hover i {
+    transform: translateX(4px);
+}
+
+/* Discord Custom Button */
+.discord-cta {
+    background-color: var(--discord-color);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(88, 101, 242, 0.25);
+}
+
+.discord-cta:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
+}
